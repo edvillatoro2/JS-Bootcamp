@@ -2,27 +2,37 @@ let state = {
   count: 0,
 };
 
+const counter = document.getElementById("count");
+const incrementBtn = document.getElementById("increment");
+const decrementBtn = document.getElementById("decrement");
+const resetBtn = document.getElementById("reset");
+
 function render() {
-  document.getElementById("count").textContent = state.count;
+  counter.textContent = state.count;
 }
 
-//increment
-document.getElementById("increment").onclick = () => {
-  state.count++;
-  render();
-};
-
-//reset
-document.getElementById("reset").onclick = () => {
-  state.count = 0;
-  render();
-};
-
-//decrement
-document.getElementById("decrement").onclick = () => {
-  //prevents count from going below 0
-  if (state.count > 0) {
-    state.count--;
+function updateCount(value) {
+  state.count += value;
+  // prevents from going below 0
+  if (state.count < 0) {
+    state.count = 0;
   }
   render();
+}
+
+function setCount(value) {
+  state.count = value;
+  render();
+}
+
+incrementBtn.onclick = () => {
+  updateCount(1);
+};
+
+decrementBtn.onclick = () => {
+  updateCount(-1);
+};
+
+resetBtn.onclick = () => {
+  setCount(0);
 };
