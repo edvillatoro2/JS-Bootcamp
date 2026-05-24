@@ -19,7 +19,7 @@ function render() {
   state.todos.forEach((todo) => {
     //create <li>
     let li = document.createElement("li");
-    li.textContent = todo.textContent;
+    li.textContent = todo.text;
     // append to DOM
     todoList.appendChild(li);
   });
@@ -36,7 +36,7 @@ function render() {
 //   done: false
 // }
 // Then: render()
-function addTodos(text) {
+function addTodo(text) {
   state.todos.push({
     id: Date.now(),
     text,
@@ -44,3 +44,25 @@ function addTodos(text) {
   });
   render();
 }
+
+// ✅ TASK 3 — Wire Button Click=
+// Goal:
+// read input value
+// call addTodo
+// clear input
+// focus input again
+addBtn.onclick = () => {
+  // read input value
+  const text = todoInput.value;
+
+  if (text.trim() === "") {
+    // if input is empty, do nothing
+    return;
+  }
+  // call addTodo
+  addTodo(text);
+  // clear input
+  todoInput.value = "";
+  // focus input again
+  todoInput.focus();
+};
