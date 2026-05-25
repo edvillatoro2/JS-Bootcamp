@@ -25,14 +25,12 @@ function render() {
     // create text span
     const textSpan = document.createElement("span");
     textSpan.textContent = todo.text;
-    deleteBtn.classList.add("todo-text");
-
     if (todo.done === true) {
       textSpan.classList.add("completed");
     }
-
     // create delete button
     const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("todo-text");
     deleteBtn.textContent = "Delete";
     deleteBtn.classList.add("delete-btn");
 
