@@ -119,3 +119,15 @@ todoList.onclick = (e) => {
 // still support deletion
 
 // Create toggleTodo(id)
+function toggleTodo(id) {
+  state.todos = state.todos.map((todo) => {
+    if (todo.id == id) {
+      return {
+        ...todo,
+        done: !todo.done,
+      };
+    }
+    return todo;
+  });
+  render();
+}
