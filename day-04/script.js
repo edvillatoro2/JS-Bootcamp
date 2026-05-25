@@ -25,6 +25,11 @@ function render() {
     // create text span
     const textSpan = document.createElement("span");
     textSpan.textContent = todo.text;
+    deleteBtn.classList.add("todo-text");
+
+    if (todo.done === true) {
+      textSpan.classList.add("completed");
+    }
 
     // create delete button
     const deleteBtn = document.createElement("button");
@@ -97,10 +102,20 @@ function deleteTodo(id) {
 // event delegation
 todoList.onclick = (e) => {
   // detect click
-  console.log(e.target);
   if (e.target.classList.contains("delete-btn")) {
-    // retrieve todo ID
+    // retrieve todo dataset ID
     const id = e.target.parentElement.dataset.id;
     deleteTodo(id);
+  } else if (e.target.classList.contains("todo-text")) {
+    const id = e.target.parentElement.dataset.id;
+    toggleTodo(id);
   }
 };
+
+// Each todo should now:
+
+// toggle completed state
+// visually reflect completion
+// still support deletion
+
+// Create toggleTodo(id)
