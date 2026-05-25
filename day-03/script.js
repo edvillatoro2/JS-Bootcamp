@@ -15,22 +15,26 @@ const todoList = document.getElementById("todo-list");
 function render() {
   // clear list
   todoList.innerHTML = "";
+
   // loop todos
   state.todos.forEach((todo) => {
-    // create <li> element
+    // create li
     const li = document.createElement("li");
-    //set todo text in li element
-    li.textContent = todo.text;
-    //Add dataset id
+    // add dataset id
     li.dataset.id = todo.id;
-    //create Button
+    // create text span
+    const textSpan = document.createElement("span");
+    textSpan.textContent = todo.text;
+
+    // create delete button
     const deleteBtn = document.createElement("button");
-    //set delete text in button element
     deleteBtn.textContent = "Delete";
-    //add ('delete-btn') class to button
     deleteBtn.classList.add("delete-btn");
-    //append button into li
+
+    // append children
+    li.appendChild(textSpan);
     li.appendChild(deleteBtn);
+
     // append to DOM
     todoList.appendChild(li);
   });
@@ -93,6 +97,7 @@ function deleteTodo(id) {
 // event delegation
 todoList.onclick = (e) => {
   // detect click
+  console.log(e.target);
   if (e.target.classList.contains("delete-btn")) {
     // retrieve todo ID
     const id = e.target.parentElement.dataset.id;
