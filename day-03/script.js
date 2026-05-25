@@ -86,7 +86,7 @@ addBtn.onclick = () => {
 
 //remove matching todos from state
 function deleteTodo(id) {
-  state.todos = state.todos.filter((todo) => todo.id !== todo.id);
+  state.todos = state.todos.filter((todo) => todo.id != id);
   render();
 }
 
