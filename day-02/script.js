@@ -8,17 +8,18 @@ const todoList = document.getElementById("todo-list");
 
 // ✅ TASK 1 — Create render()
 // Goal:
-// clear list
-// loop todos
+// clear list ✅
+// loop todos ✅
 // create <li>
 // append to DOM
 function render() {
-  //clear list
+  // clear list
   todoList.innerHTML = "";
-  //loop todos
+  // loop todos
   state.todos.forEach((todo) => {
-    //create <li>
-    let li = document.createElement("li");
+    // create <li> element
+    const li = document.createElement("li");
+    //set todo text in li element
     li.textContent = todo.text;
     // append to DOM
     todoList.appendChild(li);
@@ -37,11 +38,13 @@ function render() {
 // }
 // Then: render()
 function addTodo(text) {
+  // push todo object into state
   state.todos.push({
     id: Date.now(),
     text,
     done: false,
   });
+  // Then: render()
   render();
 }
 
@@ -54,7 +57,6 @@ function addTodo(text) {
 addBtn.onclick = () => {
   // read input value
   const text = todoInput.value;
-
   if (text.trim() === "") {
     // if input is empty, do nothing
     return;
