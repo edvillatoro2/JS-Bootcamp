@@ -32,7 +32,7 @@ function render() {
     const textSpan = document.createElement("span");
     textSpan.textContent = todo.text;
     textSpan.classList.add("todo-text");
-    if (todo.done === true) {
+    if (todo.done) {
       textSpan.classList.add("completed");
     }
     // create delete button
