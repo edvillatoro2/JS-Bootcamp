@@ -144,7 +144,7 @@ function getFilteredTodos() {
   // "active" → return incomplete todos
   // "completed" → return completed todos
 
-  if (state.filter === "activer") {
+  if (state.filter === "active") {
     return state.filter.filter((todo) => !todo.done);
   } else if (state.filter === "completed") {
     return state.filter.filter((todo) => todo.done);
