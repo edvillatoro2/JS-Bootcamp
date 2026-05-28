@@ -145,9 +145,9 @@ function getFilteredTodos() {
   // "completed" → return completed todos
 
   if (state.filter === "active") {
-    return state.filter.filter((todo) => !todo.done);
+    return state.todos.filter((todo) => !todo.done);
   } else if (state.filter === "completed") {
-    return state.filter.filter((todo) => todo.done);
+    return state.todos.filter((todo) => todo.done);
   }
-  return state.filter;
+  return state.todos;
 }
