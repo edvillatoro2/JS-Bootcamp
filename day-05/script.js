@@ -136,8 +136,21 @@ function toggleTodo(id) {
   render();
 }
 
-// separate:
-// state logic from DOM rendering
+// add button handlers
+showAllBtn.onClick = () => {
+  state.filter = "all";
+  render();
+};
+showActiveBtn.onClick = () => {
+  state.filter = "active";
+  render();
+};
+showCompletedBtn.onclick = () => {
+  state.filter = "completed";
+  render();
+};
+
+// separate: state logic from DOM rendering
 function getFilteredTodos() {
   //   If filter is:
   // "all" → return all todos
