@@ -1,5 +1,6 @@
 let state = {
   todos: [],
+  filter: "all", // 'all', 'active', 'completed'
 };
 
 const todoInput = document.getElementById("todo-input");
@@ -129,3 +130,7 @@ function toggleTodo(id) {
   });
   render();
 }
+
+// separate:
+// state logic from DOM rendering
+function getFilteredTodos() {}
