@@ -6,6 +6,10 @@ let state = {
 const todoInput = document.getElementById("todo-input");
 const addBtn = document.getElementById("add-btn");
 const todoList = document.getElementById("todo-list");
+// filter buttons
+const showAllBtn = document.getElementById("show-all");
+const showActiveBtn = document.getElementById("show-active");
+const showCompletedBtn = document.getElementById("show-completed");
 
 // ✅ TASK 1 — Create render()
 // Goal:
@@ -16,9 +20,10 @@ const todoList = document.getElementById("todo-list");
 function render() {
   // clear list
   todoList.innerHTML = "";
+  const todos = getFilteredTodos();
 
   // loop todos
-  state.todos.forEach((todo) => {
+  todos.forEach((todo) => {
     // create li
     const li = document.createElement("li");
     // add dataset id
@@ -133,4 +138,11 @@ function toggleTodo(id) {
 
 // separate:
 // state logic from DOM rendering
-function getFilteredTodos() {}
+function getFilteredTodos() {
+  if (state.filter === "active") {
+    return state.todos.filter((todo) => !todo.done);
+  } else if (state.filter === "completed") {
+    return state.todos.filter((todo) => todo.done);
+  }
+  return state.todos;
+}
