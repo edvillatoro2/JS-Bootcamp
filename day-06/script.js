@@ -166,4 +166,6 @@ function getFilteredTodos() {
 }
 
 //saving todos to local storage
-function saveTodos() {}
+function saveTodos() {
+  localStorage.setItem("todos", JSON.stringify(state.todos));
+}
