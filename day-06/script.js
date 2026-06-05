@@ -164,3 +164,6 @@ function getFilteredTodos() {
   }
   return state.todos;
 }
+
+//saving todos to local storage
+function saveTodos() {}
