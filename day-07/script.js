@@ -149,7 +149,16 @@ function toggleTodo(id) {
 }
 
 // Create editTodo(id)
-function editTodo(id) {}
+function editTodo(id) {
+  const todo = state.todos.find((todo) => todo.id == id);
+  const newText = prompt("edit todo", todo.text);
+  if (newText === null) {
+    return;
+  }
+  todo.text = newText;
+  saveTodos();
+  render();
+}
 
 // add button handlers
 showAllBtn.onclick = () => {
