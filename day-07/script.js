@@ -121,6 +121,7 @@ todoList.onclick = (e) => {
   } else if (e.target.classList.contains("todo-text")) {
     const id = e.target.parentElement.dataset.id;
     toggleTodo(id);
+  } else if (e.target.classList.contains("edit-btn")) {
   }
 };
 
