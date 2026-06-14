@@ -172,3 +172,11 @@ function getFilteredTodos() {
 function saveTodos() {
   localStorage.setItem("todos", JSON.stringify(state.todos));
 }
+
+//loading todos from local storage
+function loadTodos() {
+  const savedTodos = localStorage.getItem("todos");
+  if (savedTodos) {
+    state.todos = JSON.parse(savedTodos);
+  }
+}
