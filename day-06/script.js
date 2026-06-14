@@ -67,6 +67,7 @@ function addTodo(text) {
     text,
     done: false,
   });
+  saveTodos();
   // Then: render()
   render();
 }
@@ -100,6 +101,7 @@ addBtn.onclick = () => {
 //remove matching todos from state
 function deleteTodo(id) {
   state.todos = state.todos.filter((todo) => todo.id != id);
+  saveTodos();
   render();
 }
 
@@ -133,6 +135,7 @@ function toggleTodo(id) {
     }
     return todo;
   });
+  saveTodos();
   render();
 }
 
