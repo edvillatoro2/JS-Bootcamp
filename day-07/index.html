@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Day 3 - Todo Deletion</title>
+    <title>Day 7 — Edit Existing Todos</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -11,6 +11,11 @@
       <h1>Todo App</h1>
       <div class="todo-input">
         <input id="todo-input" type="text" placeholder="Enter a todo" />
+        <div class="filters">
+          <button id="show-all">All</button>
+          <button id="show-active">Active</button>
+          <button id="show-completed">Completed</button>
+        </div>
         <button id="add-btn">Add Todo</button>
       </div>
       <ul id="todo-list"></ul>
