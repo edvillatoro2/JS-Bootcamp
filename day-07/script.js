@@ -122,6 +122,8 @@ todoList.onclick = (e) => {
     const id = e.target.parentElement.dataset.id;
     toggleTodo(id);
   } else if (e.target.classList.contains("edit-btn")) {
+    const id = e.target.parentElement.dataset.id;
+    console.log("edit clicked", id);
   }
 };
 
@@ -145,6 +147,9 @@ function toggleTodo(id) {
   saveTodos();
   render();
 }
+
+// Create editTodo(id)
+function editTodo(id) {}
 
 // add button handlers
 showAllBtn.onclick = () => {
