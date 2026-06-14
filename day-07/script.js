@@ -123,7 +123,7 @@ todoList.onclick = (e) => {
     toggleTodo(id);
   } else if (e.target.classList.contains("edit-btn")) {
     const id = e.target.parentElement.dataset.id;
-    console.log("edit clicked", id);
+    editTodo(id);
   }
 };
 
