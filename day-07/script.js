@@ -28,6 +28,11 @@ function render() {
     const li = document.createElement("li");
     // add dataset id
     li.dataset.id = todo.id;
+
+    const toggleBtn = document.createElement("button");
+    toggleBtn.textContent = todo.done ? true : false;
+    toggleBtn.classList.add("toggle-btn");
+
     // create text span
     const textSpan = document.createElement("span");
     textSpan.textContent = todo.text;
@@ -46,6 +51,7 @@ function render() {
     editBtn.classList.add("edit-btn");
 
     // append children
+    li.appendChild(toggleBtn);
     li.appendChild(textSpan);
     li.appendChild(deleteBtn);
     li.appendChild(editBtn);
