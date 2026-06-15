@@ -118,10 +118,20 @@ todoList.onclick = (e) => {
     // retrieve todo dataset ID
     const id = e.target.parentElement.dataset.id;
     deleteTodo(id);
-  } else if (e.target.classList.contains("todo-text")) {
-    const id = e.target.parentElement.dataset.id;
-    toggleTodo(id);
+    // } else if (e.target.classList.contains("todo-text")) {
+    //   const id = e.target.parentElement.dataset.id;
+    //   toggleTodo(id);
   } else if (e.target.classList.contains("edit-btn")) {
+    const id = e.target.parentElement.dataset.id;
+    editTodo(id);
+  }
+};
+
+todoList.ondblclick = (e) => {
+  console.log("TARGET:", e.target);
+  console.log("TAG:", e.target.tagName);
+  console.log("CLASS:", e.target.className);
+  if (e.target.classList.contains("todo-text")) {
     const id = e.target.parentElement.dataset.id;
     editTodo(id);
   }
