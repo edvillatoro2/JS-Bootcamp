@@ -153,6 +153,15 @@ function editTodo(id) {
   const todo = state.todos.find((todo) => todo.id == id);
   const newText = prompt("edit todo", todo.text);
   if (newText === null) {
+    // if user cancels prompt, do nothing
+    return;
+  }
+  if (newText.trim() === "") {
+    // if input is empty, do nothing
+    return;
+  }
+  if (newText === todo.text) {
+    // if text is the same, do nothing
     return;
   }
   todo.text = newText;
