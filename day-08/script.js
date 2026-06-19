@@ -229,5 +229,11 @@ function loadTodos() {
   }
 }
 
+searchInput.oninput = () => {
+  state.search = searchInput.value;
+  console.log("SEARCH:", state.search);
+  render();
+};
+
 loadTodos();
 render();
