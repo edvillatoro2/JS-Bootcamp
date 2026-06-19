@@ -1,6 +1,7 @@
 let state = {
   todos: [],
   filter: "all", // 'all', 'active', 'completed'
+  search: "", // search string
 };
 
 const todoInput = document.getElementById("todo-input");
@@ -10,6 +11,7 @@ const todoList = document.getElementById("todo-list");
 const showAllBtn = document.getElementById("show-all");
 const showActiveBtn = document.getElementById("show-active");
 const showCompletedBtn = document.getElementById("show-completed");
+const searchInput = document.getElementById("search-input");
 
 // ✅ TASK 1 — Create render()
 // Goal:
