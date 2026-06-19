@@ -1,10 +1,15 @@
 let state = {
   todos: [],
+  filter: "all", // 'all', 'active', 'completed'
 };
 
 const todoInput = document.getElementById("todo-input");
 const addBtn = document.getElementById("add-btn");
 const todoList = document.getElementById("todo-list");
+// filter buttons
+const showAllBtn = document.getElementById("show-all");
+const showActiveBtn = document.getElementById("show-active");
+const showCompletedBtn = document.getElementById("show-completed");
 
 // ✅ TASK 1 — Create render()
 // Goal:
@@ -15,28 +20,41 @@ const todoList = document.getElementById("todo-list");
 function render() {
   // clear list
   todoList.innerHTML = "";
+  const todos = getFilteredTodos();
 
   // loop todos
-  state.todos.forEach((todo) => {
+  todos.forEach((todo) => {
     // create li
     const li = document.createElement("li");
     // add dataset id
     li.dataset.id = todo.id;
+
+    const toggleBtn = document.createElement("button");
+    toggleBtn.textContent = todo.done ? true : false;
+    toggleBtn.classList.add("toggle-btn");
+
     // create text span
     const textSpan = document.createElement("span");
     textSpan.textContent = todo.text;
-    if (todo.done === true) {
+    textSpan.classList.add("todo-text");
+    if (todo.done) {
       textSpan.classList.add("completed");
     }
     // create delete button
     const deleteBtn = document.createElement("button");
-    deleteBtn.classList.add("todo-text");
     deleteBtn.textContent = "Delete";
     deleteBtn.classList.add("delete-btn");
 
+    //edit button
+    // const editBtn = document.createElement("button");
+    // editBtn.textContent = "Edit";
+    // editBtn.classList.add("edit-btn");
+
     // append children
+    li.appendChild(toggleBtn);
     li.appendChild(textSpan);
     li.appendChild(deleteBtn);
+    // li.appendChild(editBtn);
 
     // append to DOM
     todoList.appendChild(li);
@@ -61,6 +79,7 @@ function addTodo(text) {
     text,
     done: false,
   });
+  saveTodos();
   // Then: render()
   render();
 }
@@ -94,6 +113,7 @@ addBtn.onclick = () => {
 //remove matching todos from state
 function deleteTodo(id) {
   state.todos = state.todos.filter((todo) => todo.id != id);
+  saveTodos();
   render();
 }
 
@@ -104,9 +124,22 @@ todoList.onclick = (e) => {
     // retrieve todo dataset ID
     const id = e.target.parentElement.dataset.id;
     deleteTodo(id);
-  } else if (e.target.classList.contains("todo-text")) {
+    // } else if (e.target.classList.contains("todo-text")) {
+    //   const id = e.target.parentElement.dataset.id;
+    //   toggleTodo(id);
+    // } else if (e.target.classList.contains("edit-btn")) {
+    //   const id = e.target.parentElement.dataset.id;
+    //   editTodo(id);
+  }
+};
+
+todoList.ondblclick = (e) => {
+  console.log("TARGET:", e.target);
+  console.log("TAG:", e.target.tagName);
+  console.log("CLASS:", e.target.className);
+  if (e.target.classList.contains("todo-text")) {
     const id = e.target.parentElement.dataset.id;
-    toggleTodo(id);
+    editTodo(id);
   }
 };
 
@@ -127,5 +160,72 @@ function toggleTodo(id) {
     }
     return todo;
   });
+  saveTodos();
   render();
 }
+
+// Create editTodo(id)
+function editTodo(id) {
+  const todo = state.todos.find((todo) => todo.id == id);
+  const newText = prompt("edit todo", todo.text);
+  if (newText === null) {
+    // if user cancels prompt, do nothing
+    return;
+  }
+  if (newText.trim() === "") {
+    // if input is empty, do nothing
+    return;
+  }
+  if (newText === todo.text) {
+    // if text is the same, do nothing
+    return;
+  }
+  todo.text = newText;
+  saveTodos();
+  render();
+}
+
+// add button handlers
+showAllBtn.onclick = () => {
+  state.filter = "all";
+  render();
+};
+showActiveBtn.onclick = () => {
+  state.filter = "active";
+  render();
+};
+showCompletedBtn.onclick = () => {
+  state.filter = "completed";
+  render();
+};
+
+// separate: state logic from DOM rendering
+function getFilteredTodos() {
+  //   If filter is:
+  // "all" → return all todos
+  // "active" → return incomplete todos
+  // "completed" → return completed todos
+
+  if (state.filter === "active") {
+    return state.todos.filter((todo) => !todo.done);
+  } else if (state.filter === "completed") {
+    return state.todos.filter((todo) => todo.done);
+  }
+  return state.todos;
+}
+
+//saving todos to local storage
+function saveTodos() {
+  localStorage.setItem("todos", JSON.stringify(state.todos));
+}
+
+//loading todos from local storage
+function loadTodos() {
+  const savedTodos = localStorage.getItem("todos");
+  if (savedTodos) {
+    state.todos = JSON.parse(savedTodos);
+  }
+}
+
+loadTodos();
+render();
