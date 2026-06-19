@@ -46,15 +46,15 @@ function render() {
     deleteBtn.classList.add("delete-btn");
 
     //edit button
-    const editBtn = document.createElement("button");
-    editBtn.textContent = "Edit";
-    editBtn.classList.add("edit-btn");
+    // const editBtn = document.createElement("button");
+    // editBtn.textContent = "Edit";
+    // editBtn.classList.add("edit-btn");
 
     // append children
     li.appendChild(toggleBtn);
     li.appendChild(textSpan);
     li.appendChild(deleteBtn);
-    li.appendChild(editBtn);
+    // li.appendChild(editBtn);
 
     // append to DOM
     todoList.appendChild(li);
@@ -127,9 +127,9 @@ todoList.onclick = (e) => {
     // } else if (e.target.classList.contains("todo-text")) {
     //   const id = e.target.parentElement.dataset.id;
     //   toggleTodo(id);
-  } else if (e.target.classList.contains("edit-btn")) {
-    const id = e.target.parentElement.dataset.id;
-    editTodo(id);
+    // } else if (e.target.classList.contains("edit-btn")) {
+    //   const id = e.target.parentElement.dataset.id;
+    //   editTodo(id);
   }
 };
 
