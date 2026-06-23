@@ -208,12 +208,14 @@ function getFilteredTodos() {
   // "active" → return incomplete todos
   // "completed" → return completed todos
 
+  let filteredTodos = state.todos;
   if (state.filter === "active") {
-    return state.todos.filter((todo) => !todo.done);
-  } else if (state.filter === "completed") {
-    return state.todos.filter((todo) => todo.done);
+    filteredTodos = state.todos.filter((todos) => !todos.done);
   }
-  return state.todos;
+  if (state.filter === "completed") {
+    filteredTodos = state.todos.filter((todos) => todos.done);
+  }
+  return filteredTodos;
 }
 
 //saving todos to local storage
