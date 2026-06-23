@@ -210,10 +210,17 @@ function getFilteredTodos() {
 
   let filteredTodos = state.todos;
   if (state.filter === "active") {
-    filteredTodos = state.todos.filter((todos) => !todos.done);
+    filteredTodos = state.todos.filter((todo) => !todo.done);
   }
   if (state.filter === "completed") {
-    filteredTodos = state.todos.filter((todos) => todos.done);
+    filteredTodos = state.todos.filter((todo) => todo.done);
+  }
+
+  // If search is not empty, filter todos by search string
+  if (state.search.trim() !== "") {
+    filteredTodos = filteredTodos.filter((todo) =>
+      todo.text.toLowerCase().includes(state.search.toLowerCase()),
+    );
   }
   return filteredTodos;
 }
